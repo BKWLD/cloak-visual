@@ -17,7 +17,21 @@ Adpaters for vue-visual using @nuxt/image.
 ### Module Options
 
 - `cloak.visual:`
+  - `placeholderColor` - Sets the [`vue-visual` `placeholder-color`](https://github.com/BKWLD/vue-visual#loading). Defaults to `rgba(0,0,0,.2)`.
   - `maxWidthClass` - The default max-width class to use for the block.
+
+Also, you'll likely want to [configure @nuxt/image](https://image.nuxtjs.org/api/options) as well.  Here is an example configuration using `imgix`:
+
+```
+export default {
+  image: {
+    provider: 'imgix',
+    imgix: {
+      baseURL: 'https://your-subdomain.imgix.net',
+    }
+  }
+}
+```
 
 ## Usage
 

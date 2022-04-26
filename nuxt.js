@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { setPublicDefaultOptions } from '@cloak-app/utils'
+import { setPublicDefaultOptions, requireOnce } from '@cloak-app/utils'
 export default function() {
 
 	// Have Nuxt transpile resources
@@ -23,8 +23,12 @@ export default function() {
 
 	// Set default options
 	setPublicDefaultOptions(this, 'visual', {
-		blockMaxWidthClass: 'max-w'
+		blockMaxWidthClass: 'max-w',
+		placeholderColor: 'rgba(0,0,0,.2)',
 	})
+
+	// Add @nuxt/image
+	requireOnce(this, '@nuxt/image')
 }
 
 // Required for published modules
