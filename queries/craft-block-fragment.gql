@@ -1,0 +1,4 @@
+# Fetch a visual block
+fragment visualBlock on blocks_visual_BlockType {
+	# Fields go here
+}

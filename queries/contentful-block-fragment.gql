@@ -1,0 +1,4 @@
+# Fetch a visual block
+fragment visualBlock on BlockVisual {
+	# Fields go here
+}
