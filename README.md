@@ -1,6 +1,6 @@
 # @cloak-app/visual
 
-Adpaters for vue-visual using @nuxt/image.
+Adpaters for vue-visual using [@nuxt/image](https://image.nuxtjs.org).
 
 - [View demo](https://cloak-visual.netlify.app)
 - [Edit CodeSandbox](https://githubbox.com/BKWLD/cloak-visual)
