@@ -43,8 +43,8 @@ export default
 		# Do we have unique landscape and portrait configs?
 		isResponsive: -> !!(@landscape and @portrait)
 
-		# The config used when there is both landscape and portrait assets. The video
-		# prop will only be set once the viewport can be measured.
+		# The config used when there is both landscape and portrait assets. The
+		# video prop will only be set once the viewport can be measured.
 		responsiveConfig: ->
 			return unless @isResponsive
 			{
@@ -77,13 +77,13 @@ export default
 				{
 					attrs:
 						media: '(orientation: landscape)'
-						# srcset: @makeSrcset @landscape.props.image
+						srcset: @$img @landscapeImage
 						sizes: @sizes
 				}
 				{
 					attrs:
 						media: '(orientation: portrait)'
-						# srcset: @makeSrcset @portrait.props.image
+						srcset: @$img @portraitImage
 						sizes: @sizes
 				}
 			]
