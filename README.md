@@ -37,7 +37,36 @@ export default {
 
 ## Usage
 
-TODO: Write component API docs
+### Components
+
+`<cloak-visual />`
+
+Renders a `vue-visual` instance using Cloak defaults.
+
+- props:
+  - `provider` - Use a specific `@nuxt/image` provider rather than [the default](https://image.nuxtjs.org/api/options#provider)
+  - `preset` - Use a specific [`@nuxt/image` preset](https://image.nuxtjs.org/api/options#presets)
+  - `natural` - Set width and height to natural size
+  - `no-upscale` - Use image's width as a max-width
+  - `no-placeholder` - Clear placeholder color, like for logos.  The placeholder is automatically isabled
+  - ... all other [`vue-visual` props](https://github.com/BKWLD/vue-visual)
+
+`<cloak-visual-responsive />`
+
+Conditionally render landscape or portrait Visual instances.
+
+- props:
+  - `landscape-image` - Image shown on landscape orientation viewports
+  - `portrait-image` - Image shown on landscape orientation viewports
+  - ... all other `cloak-visual` props
+
+`<cloak-visual-block />`
+
+The block component simply renders a 100% width Visual within the max-width gutters using the default `@nuxt/image` provider.
+
+- props:
+  - `maxWidthClass` - A `max-w-*` class to apply to the block
+  - ... all other `cloak-visual-responsive` props
 
 ## Contributing
 
