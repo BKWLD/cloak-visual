@@ -12,6 +12,25 @@ Renders a `vue-visual` instance using Cloak defaults.
 ```vue
 <cloak-visual
   image='https://cloak-visual.netlify.app/landscape.jpg'
+  alt='Cyberpunk vibes demo image'>
+</cloak-visual>
+```
+
+## Support @nuxt/image providers
+
+This uses an explicit `imgix` provider to produce a `srcset` using `@cloak-app/visual`'s default `srcsetSizes` option.  Typically you *wouldn't* explicitly set the `provider` on each instance but would set as [the default provider](https://image.nuxtjs.org/api/options#provider).  Now that we're generating a `srcset` you should also remember to specify a `sizes` value.
+
+<cloak-visual
+  image='https://cloak-visual.netlify.app/landscape.jpg'
+  provider='imgix'
+  sizes='100vw'
+  alt='Cyberpunk vibes demo image'>
+</cloak-visual>
+
+```vue
+<cloak-visual
+  image='https://cloak-visual.netlify.app/landscape.jpg'
+  provider='imgix'
   sizes='100vw'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual>
@@ -24,6 +43,7 @@ Conditionally render landscape or portrait visual instances.
 <cloak-visual-responsive
   landscape-image='https://cloak-visual.netlify.app/landscape.jpg'
   portrait-image='https://cloak-visual.netlify.app/portrait.png'
+  provider='imgix'
   sizes='100vw'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-responsive>
@@ -32,6 +52,7 @@ Conditionally render landscape or portrait visual instances.
 <cloak-visual-responsive
   landscape-image='https://cloak-visual.netlify.app/landscape.jpg'
   portrait-image='https://cloak-visual.netlify.app/portrait.png'
+  provider='imgix'
   sizes='100vw'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-responsive>

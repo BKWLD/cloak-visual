@@ -77,13 +77,13 @@ export default
 				{
 					attrs:
 						media: '(orientation: landscape)'
-						srcset: @$srcset @landscapeImage
+						srcset: @$cloakSrcset @landscapeImage
 						sizes: @sizes
 				}
 				{
 					attrs:
 						media: '(orientation: portrait)'
-						srcset: @$srcset @portraitImage
+						srcset: @$cloakSrcset @portraitImage
 						sizes: @sizes
 				}
 			]

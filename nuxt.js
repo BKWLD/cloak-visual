@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { setPublicDefaultOptions, requireOnce } from '@cloak-app/utils'
+import { defaultsDeep } from 'lodash'
 export default function() {
 
 	// Have Nuxt transpile resources
@@ -21,27 +22,42 @@ export default function() {
 		})
 	})
 
-	// Set default options
+	// Set default @cloak-app/visual options
 	setPublicDefaultOptions(this, 'visual', {
 		placeholderColor: 'rgba(0,0,0,.2)',
 		srcsetSizes: [1920, 1440, 1024, 768, 425, 210],
 		blockMaxWidthClass: 'max-w',
 	})
 
+	// Make @nuxt/image best practice presets
+	defaultsDeep(this.options, {
+		image: {
+			presets: {
+
+				// See https://image.nuxtjs.org/providers/imgix#imgix-best-practices
+				imgix: {
+					modifiers: {
+						auto: 'format,compress',
+						crop: 'faces',
+					}
+				}
+			}
+		}
+	})
+
 	// Add @nuxt/image
 	requireOnce(this, '@nuxt/image')
 
+	// Expose @nuxt/image config options to helpers
+	defaultsDeep(this.options.publicRuntimeConfig, {
+		image: {
+			provider: this.options.image?.provider,
+			domains: this.options.image?.domains || [],
+		}
+	})
+
 	// Add helper methods
 	this.addPlugin(join(__dirname, 'plugins/helpers.js'))
-
-	// Add image domains to config for use in helper methods
-	this.options.publicRuntimeConfig = {
-		...this.options.publicRuntimeConfig,
-		image: {
-			domains: this.options.image?.domains || [],
-			...this.options.publicRuntimeConfig.image
-		}
-	}
 }
 
 // Required for published modules

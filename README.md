@@ -21,7 +21,7 @@ Adpaters for vue-visual using @nuxt/image.
   - `srcsetWidths` - An array of viewport widths that will be used to make `srcset` values from.  Defaults to `[1920, 1440, 1024, 768, 425, 210]`.
   - `maxWidthClass` - The default max-width class to use for the block.
 
-Also, you'll likely want to [configure @nuxt/image](https://image.nuxtjs.org/api/options) as well.  Here is an example configuration using `imgix`:
+Also, you'll likely want to add a provider to [@nuxt/image](https://image.nuxtjs.org/api/options) as well.  Here is an example configuration using `imgix`:
 
 ```
 export default {

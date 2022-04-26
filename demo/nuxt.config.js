@@ -24,6 +24,7 @@ export default {
 
 	// Default to using imgix to generate srcsets
 	image: {
+		// provider: 'imgix', // On a non-demo site, this would be enabled
 		domains: ['cloak-visual.netlify.app'],
 		imgix: {
 			baseURL: 'https://cloak-visual.imgix.net',

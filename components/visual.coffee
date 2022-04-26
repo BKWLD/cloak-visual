@@ -18,6 +18,10 @@ export default
 	props: {
 		...baseProps
 
+		# Disable the default @nuxt/image provider
+		provider: String
+		preset: String
+
 		# Support additional types
 		aspect: Number | String | Boolean
 
@@ -111,6 +115,12 @@ export default
 			if isCriticalImage or not lazyload
 			then '' else undefined
 
+		# Route the image through @nuxt/image.
+		# https://image.nuxtjs.org/api/$img
+		{ provider, preset } = props
+		image = parent.$cloakImg props.image, {}, { provider, preset }
+		srcset = parent.$cloakSrcset props.image, {}, { provider, preset }
+
 		# Instantiate a Visual instance
 		create Visual, {
 			...data
@@ -120,6 +130,8 @@ export default
 				...props
 
 				# Image
+				image
+				srcset
 				sizes
 
 				# Video props that default to true

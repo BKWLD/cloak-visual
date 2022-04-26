@@ -3,27 +3,49 @@
  */
 
 // Inject helpers globally
-export default function ({ $config, $img }, inject) {
+export default function ({ $config, $img, app }, inject) {
 
-	// Auto provide list of domains to removeImgOrigin
-	inject('imgPath', url => {
-		return imgPath($config.image.domains, url)
-	})
-
-	// Auto provide configuration options to srcset
-	inject('srcset', (url, sizes, { options } = {}) => {
-		return srcset(url, sizes || $config.cloak.visual.srcsetSizes, {
+	// Auto provide configuration options to img()
+	inject('cloakImg', (url, modifiers, options) => {
+		return img(url, modifiers, options, {
 			$img,
 			domains: $config.image.domains,
-			...options,
+			defaultProvider: $config.image.provider,
 		})
 	})
 
+	// Auto provide configuration options to srcset()
+	const sizes = $config.cloak.visual.srcsetSizes
+	inject('cloakSrcset', (url, modifiers, options) => {
+		return srcset(url, sizes, modifiers, options, {
+			$cloakImg: app.$cloakImg
+		})
+	})
+}
+
+/**
+ * Passed options on to $img from @nuxt/image after some massaging
+ */
+export function img(url, modifiers, options = {}, {
+	$img, domains, defaultProvider
+}) {
+
+	// If domains were provided, try and get just the image path
+	if (domains) url = imgPath(domains, url)
+
+	// If preset is empty, use the default preset for the provider
+	if (!options.preset) {
+		const provider = options.provider || defaultProvider
+		if (provider == 'imgix') options.preset = 'imgix'
+	}
+
+	// Make the imag
+	return $img(url, modifiers, options)
 }
 
 // Remove the origin from a URL if it's domain is in one of the @nuxt/image
 // remote domains
-export function imgPath(domains, url) {
+function imgPath(domains, url) {
 	url = new URL(url)
 	if (domains.includes(url.hostname)) {
 		return url.pathname + url.search
@@ -34,11 +56,10 @@ export function imgPath(domains, url) {
 // Make srcset given an array of sizes (widths).  I'm not using the
 // $img.getSizes helper because I don't like how it's `sizes` option works.
 // I want to allow `sizes` to be set using the native API.
-export function srcset(url, sizes, { $img, domains, maxWidth } = {}) {
-	if (!url) return
-
-	// If domains were provided, try and get just the image path
-	if (domains) url = imgPath(domains, url)
+export function srcset(url, sizes, modifiers, options, {
+	$cloakImg, maxWidth
+} = {}) {
+	if (!url || !sizes) return
 
 	// Don't output src options that are greater then a 2X version of the max
 	// width
@@ -49,6 +70,7 @@ export function srcset(url, sizes, { $img, domains, maxWidth } = {}) {
 
 	// Make array of srcsets
 	return sizes.map(size => {
-		return `${encodeURI($img(url, { width: size }))} ${size}w`
+		const sizedUrl = $cloakImg(url, { ...modifiers, width: size }, options)
+		return `${encodeURI(sizedUrl)} ${size}w`
 	}).join(', ')
 }
