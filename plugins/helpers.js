@@ -2,7 +2,9 @@
  * Helpers for working with images
  */
 
-// Inject helpers globally
+/**
+ * Inject helpers globally
+ */
 export default function ({ $config, $img, app }, inject) {
 
 	// Auto provide configuration options to img()
@@ -43,8 +45,10 @@ export function img(url, modifiers, options = {}, {
 	return $img(url, modifiers, options)
 }
 
-// Remove the origin from a URL if it's domain is in one of the @nuxt/image
-// remote domains
+/**
+ * Remove the origin from a URL if it's domain is in one of the @nuxt/image
+ * remote domains
+ */
 function imgPath(domains, url) {
 	url = new URL(url)
 	if (domains.includes(url.hostname)) {
@@ -53,9 +57,11 @@ function imgPath(domains, url) {
 	return url
 }
 
-// Make srcset given an array of sizes (widths).  I'm not using the
-// $img.getSizes helper because I don't like how it's `sizes` option works.
-// I want to allow `sizes` to be set using the native API.
+/**
+ * Make srcset given an array of sizes (widths).  I'm not using the
+ * $img.getSizes helper because I don't like how it's `sizes` option works.
+ * I want to allow `sizes` to be set using the native API.
+ */
 export function srcset(url, sizes, modifiers, options, {
 	$cloakImg, maxWidth
 } = {}) {
