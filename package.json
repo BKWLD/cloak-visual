@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@cloak-app/utils": "^1.2.0",
-		"@nuxt/image": "^0.6.2",
+		"@nuxt/image": "0.6.0 || ^0.6.3",
 		"lodash": "^4.0.0",
 		"vue-visual": "^2.0.0"
 	},
