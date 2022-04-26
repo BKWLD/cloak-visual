@@ -2,7 +2,7 @@
 
 ## Base component
 
-Renders a `vue-visual` instance using Cloak defaults.
+Renders a `vue-visual` instance using Cloak defaults.  When deployed to Netlify,this uses [the `netlify` provider](https://image.nuxtjs.org/providers/netlify) to produce a srcset.
 
 <cloak-visual
   image='https://cloak-visual.netlify.app/landscape.jpg'
