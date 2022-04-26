@@ -23,7 +23,7 @@ Adpaters for vue-visual using @nuxt/image.
 
 Also, you'll likely want to add a provider to [@nuxt/image](https://image.nuxtjs.org/api/options) as well.  Here is an example configuration using `imgix`:
 
-```
+```js
 export default {
   image: {
     provider: 'imgix',
@@ -37,14 +37,7 @@ export default {
 
 ## Usage
 
-### Components
-
-`<cloak-visual-block />`
-
-Renders a Block to be used within a Tower.
-
-- props:
-  - `maxWidthClass` - A `max-w-*` class to apply to the block
+TODO: Write component API docs
 
 ## Contributing
 
