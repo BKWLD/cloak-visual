@@ -2,7 +2,11 @@
 
 <template lang='pug'>
 
-section.visual-block(:class='classes') Heya world
+section.visual-block(:class='classes')
+	cloak-visual(
+		:image='image'
+		:alt='alt'
+		sizes='100vw')
 
 </template>
 
@@ -12,6 +16,17 @@ section.visual-block(:class='classes') Heya world
 export default
 
 	props:
+
+		image: String
+
+		# Alt text is common for all assets
+		alt: String
+
+		# Make explicit landscape and portrait props that expect
+		# landscapeImage: String
+		# portraitImage: String
+		# landscapeVideo: String
+		# portraitVideo: String
 
 		# The max-width class
 		maxWidthClass:
@@ -27,11 +42,4 @@ export default
 
 <!-- ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-<style lang='stylus' scoped>
-
-.visual-block
-	border 1px dashed currentColor
-	padding 1em
-	margin-v 1em
-
-</style>
+<style lang='stylus' scoped></style>

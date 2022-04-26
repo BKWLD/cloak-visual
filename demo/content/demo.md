@@ -1,12 +1,17 @@
 # [@cloak-app/visual](https://github.com/BKWLD/cloak-visual)
 
-## Description of a feature
+## Block component
 
-Additional details of the feature
+The block component simply renders a 100% width Visual within the max-width gutters.
 
-<cloak-visual-block></cloak-visual-block>
-
+<cloak-visual-block
+  image='https://cloak-visual.netlify.app/landscape.jpg'
+  alt="Hey">
+</cloak-visual-block>
 
 ```vue
-<cloak-visual-block></cloak-visual-block>
+<cloak-visual-block
+  image='https://cloak-visual.netlify.app/landscape.jpg'
+  alt="Hey">
+</cloak-visual-block>
 ```
