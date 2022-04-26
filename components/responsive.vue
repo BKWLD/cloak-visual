@@ -117,7 +117,7 @@ export default
 		# Build the srcset using inheritted props
 		makeSrcset: (source) ->
 			{ provider, preset } = @$props
-			@$cloakSrcset @portraitImage, {}, { provider, preset }
+			@$cloakSrcset source, {}, { provider, preset }
 
 	# Make the appropriate visual instance
 	render: (create) ->
