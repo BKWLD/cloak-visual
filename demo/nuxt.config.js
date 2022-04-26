@@ -16,10 +16,6 @@ export default {
 			siteName: '@cloak-app/visual demo',
 		},
 
-		// Example settings for this package
-		visual: {
-			blockMaxWidthClass: 'max-w',
-		},
 	},
 
 	// Default to using imgix to generate srcsets
