@@ -119,7 +119,11 @@ export default
 		# https://image.nuxtjs.org/api/$img
 		{ provider, preset } = props
 		image = parent.$cloakImg props.image, {}, { provider, preset }
-		srcset = parent.$cloakSrcset props.image, {}, { provider, preset }
+
+		# Make a srceset using @nuxt/image unless sources were slotted in (they
+		# will contain the srcet)
+		srcset = if scopedSlots['image-source'] then undefined
+		else parent.$cloakSrcset props.image, {}, { provider, preset }
 
 		# Instantiate a Visual instance
 		create Visual, {
