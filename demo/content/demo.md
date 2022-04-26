@@ -6,7 +6,6 @@ Renders a `vue-visual` instance using Cloak defaults.
 
 <cloak-visual
   image='https://cloak-visual.netlify.app/landscape.jpg'
-  sizes='100vw'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual>
 
@@ -43,13 +42,15 @@ Conditionally render landscape or portrait visual instances.
 The block component simply renders a 100% width Visual within the max-width gutters.
 
 <cloak-visual-block
-  image='https://cloak-visual.netlify.app/landscape.jpg'
+  landscape-image='https://cloak-visual.netlify.app/landscape.jpg'
+  portrait-image='https://cloak-visual.netlify.app/portrait.png'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-block>
 
 ```vue
 <cloak-visual-block
-  image='https://cloak-visual.netlify.app/landscape.jpg'
+  landscape-image='https://cloak-visual.netlify.app/landscape.jpg'
+  portrait-image='https://cloak-visual.netlify.app/portrait.png'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-block>
 ```

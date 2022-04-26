@@ -3,40 +3,37 @@
 <template lang='pug'>
 
 section.visual-block(:class='classes')
-	cloak-visual(
-		:image='image'
-		:alt='alt'
-		sizes='100vw')
+	cloak-visual-responsive(v-bind='visualProps')
 
 </template>
 
 <!-- ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 <script lang='coffee'>
+import ResponsiveVisual from './responsive'
 export default
 
-	props:
-
-		image: String
-
-		# Alt text is common for all assets
-		alt: String
-
-		# Make explicit landscape and portrait props that expect
-		# landscapeImage: String
-		# portraitImage: String
-		# landscapeVideo: String
-		# portraitVideo: String
+	# Support all responsive visual props
+	props: {
+		...ResponsiveVisual.props
 
 		# The max-width class
 		maxWidthClass:
 			type: String
 			default: -> @$config.cloak?.visual?.blockMaxWidthClass || ''
+	}
 
 	computed:
 
 		# Root classes
 		classes: -> @maxWidthClass
+
+		# Pass everything but block spcific props to visual instance
+		visualProps: -> {
+			...@$props
+			sizes: '100vw'
+			maxWidthClass: undefined
+		}
 
 </script>
 
