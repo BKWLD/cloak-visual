@@ -77,13 +77,13 @@ export default
 				{
 					attrs:
 						media: '(orientation: landscape)'
-						srcset: @$cloakSrcset @landscapeImage
+						srcset: @makeSrcset @landscapeImage
 						sizes: @sizes
 				}
 				{
 					attrs:
 						media: '(orientation: portrait)'
-						srcset: @$cloakSrcset @portraitImage
+						srcset: @makeSrcset @portraitImage
 						sizes: @sizes
 				}
 			]
@@ -113,6 +113,11 @@ export default
 				landscapeVideo: undefined
 				portraitVideo: undefined
 			}
+
+		# Build the srcset using inheritted props
+		makeSrcset: (source) ->
+			{ provider, preset } = @$props
+			@$cloakSrcset @portraitImage, {}, { provider, preset }
 
 	# Make the appropriate visual instance
 	render: (create) ->
