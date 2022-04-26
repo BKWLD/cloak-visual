@@ -50,7 +50,8 @@ export function img(url, modifiers, options = {}, {
  * remote domains
  */
 function imgPath(domains, url) {
-	url = new URL(url)
+	try { url = new URL(url) }
+	catch (e) { return url }
 	if (domains.includes(url.hostname)) {
 		return url.pathname + url.search
 	}
