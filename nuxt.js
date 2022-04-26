@@ -23,12 +23,25 @@ export default function() {
 
 	// Set default options
 	setPublicDefaultOptions(this, 'visual', {
-		blockMaxWidthClass: 'max-w',
 		placeholderColor: 'rgba(0,0,0,.2)',
+		srcsetSizes: [1920, 1440, 1024, 768, 425, 210],
+		blockMaxWidthClass: 'max-w',
 	})
 
 	// Add @nuxt/image
 	requireOnce(this, '@nuxt/image')
+
+	// Add helper methods
+	this.addPlugin(join(__dirname, 'plugins/helpers.js'))
+
+	// Add image domains to config for use in helper methods
+	this.options.publicRuntimeConfig = {
+		...this.options.publicRuntimeConfig,
+		image: {
+			domains: this.options.image?.domains || [],
+			...this.options.publicRuntimeConfig.image
+		}
+	}
 }
 
 // Required for published modules

@@ -18,6 +18,7 @@ Adpaters for vue-visual using @nuxt/image.
 
 - `cloak.visual:`
   - `placeholderColor` - Sets the [`vue-visual` `placeholder-color`](https://github.com/BKWLD/vue-visual#loading). Defaults to `rgba(0,0,0,.2)`.
+  - `srcsetWidths` - An array of viewport widths that will be used to make `srcset` values from.  Defaults to `[1920, 1440, 1024, 768, 425, 210]`.
   - `maxWidthClass` - The default max-width class to use for the block.
 
 Also, you'll likely want to [configure @nuxt/image](https://image.nuxtjs.org/api/options) as well.  Here is an example configuration using `imgix`:
@@ -26,6 +27,7 @@ Also, you'll likely want to [configure @nuxt/image](https://image.nuxtjs.org/api
 export default {
   image: {
     provider: 'imgix',
+    domains: ['your-source.domain.com'],
     imgix: {
       baseURL: 'https://your-subdomain.imgix.net',
     }

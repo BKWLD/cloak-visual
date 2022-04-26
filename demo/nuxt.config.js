@@ -19,7 +19,16 @@ export default {
 		// Example settings for this package
 		visual: {
 			blockMaxWidthClass: 'max-w',
-		}
+		},
+	},
+
+	// Default to using imgix to generate srcsets
+	image: {
+		provider: 'imgix',
+		domains: ['cloak-visual.netlify.app'],
+		imgix: {
+			baseURL: 'https://cloak-visual.imgix.net',
+		},
 	},
 
 	// @nuxt/content can't be loaded from module
