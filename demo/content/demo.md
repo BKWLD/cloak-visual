@@ -60,18 +60,18 @@ Conditionally render landscape or portrait visual instances using `imgix` to pro
 
 ## Block component
 
-The block component simply renders a 100% width Visual within the max-width gutters using the default `@nuxt/image` provider.
+The block component simply renders a 100% width Visual within the max-width gutters using the default `@nuxt/image` provider.  I'm using full URLs like would be returned from a CMS's storage. The domains of the CMS storage must be added to the `image.domains` array in your `nuxt.config`.
 
 <cloak-visual-block
-  landscape-image='/assets/landscape.jpg'
-  portrait-image='/assets/portrait.png'
+  landscape-image='https://cloak-visual.netlify.app/assets/landscape.jpg'
+  portrait-image='https://cloak-visual.netlify.app/assets/portrait.png'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-block>
 
 ```vue
 <cloak-visual-block
-  landscape-image='/assets/landscape.jpg'
-  portrait-image='/assets/portrait.png'
+  lanlandscape-image='https://cloak-visual.netlify.app/assets/landscape.jpg'
+  portrait-image='https://cloak-visual.netlify.app/assets/portrait.png'
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-block>
 ```
