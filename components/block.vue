@@ -39,4 +39,13 @@ export default
 
 <!-- ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-<style lang='stylus' scoped></style>
+<style lang='stylus' scoped>
+
+// Make the image fill the block.  With most CMSs this is unnecessary because
+// they provide image dimensions that are used to form the aspect and the
+// presence of the aspect applies a similar rule.  This is a fallback for
+// CMSs like @nuxt/content where we don't automatically have the aspect.
+>>> .vv-asset
+	width 100%
+
+</style>
