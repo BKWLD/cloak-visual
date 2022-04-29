@@ -26,7 +26,7 @@ export default function() {
 	setPublicDefaultOptions(this, 'visual', {
 		placeholderColor: 'rgba(0,0,0,.2)',
 		srcsetSizes: [1920, 1440, 1024, 768, 425, 210],
-		blockMaxWidthClass: 'max-w',
+		blockMaxWidth: 'max-w',
 	})
 
 	// Make @nuxt/image best practice presets

@@ -17,22 +17,22 @@ export default
 	props: {
 		...ResponsiveVisual.props
 
-		# The max-width class
-		maxWidthClass:
+		# Block props
+		maxWidth:
 			type: String
-			default: -> @$config.cloak?.visual?.blockMaxWidthClass || ''
+			default: -> @$config.cloak?.copy?.blockMaxWidth || ''
 	}
 
 	computed:
 
 		# Root classes
-		classes: -> @maxWidthClass
+		classes: -> @maxWidth # Expect to match a CSS class
 
 		# Pass everything but block spcific props to visual instance
 		visualProps: -> {
 			...@$props
 			sizes: '100vw'
-			maxWidthClass: undefined
+			maxWidth: undefined
 		}
 
 </script>
