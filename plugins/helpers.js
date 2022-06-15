@@ -41,7 +41,7 @@ export function img(url, modifiers, options = {}, {
 		if (provider == 'imgix') options.preset = 'imgix'
 	}
 
-	// Make the imag
+	// Make the image
 	return $img(url, modifiers, options)
 }
 
@@ -50,11 +50,19 @@ export function img(url, modifiers, options = {}, {
  * remote domains
  */
 function imgPath(domains, url) {
-	try { url = new URL(url) }
+
+	// Support urls like "//domain.com/path" by prepending https protocol
+	if (url.match(/^\/\//)) url = 'https:' + url
+
+	// Return the path if the url matches one of the allowed domains
+	let urlObj
+	try { urlObj = new URL(url) }
 	catch (e) { return url }
-	if (domains.includes(url.hostname)) {
-		return url.pathname + url.search
+	if (domains.includes(urlObj.hostname)) {
+		return urlObj.pathname + urlObj.search
 	}
+
+	// Else passthrough the URL
 	return url
 }
 
