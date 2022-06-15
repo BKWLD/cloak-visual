@@ -8,6 +8,8 @@ export default function() {
 
 	// Allow components to be auto-imported by Nuxt
 	this.nuxt.hook('components:dirs', dirs => {
+
+		// Typical @cloak-app structure
 		dirs.push({
 			path: join(__dirname, './adapters/blocks'),
 			extensions: ['js', 'coffee'],
@@ -15,14 +17,17 @@ export default function() {
 			level: 2,
 		})
 		dirs.push({
-			path: join(__dirname, './adapters/globals'),
-			extensions: ['js', 'coffee'],
-			level: 2,
-		})
-		dirs.push({
 			path: join(__dirname, './components'),
 			extensions: ['vue', 'js', 'coffee'],
 			prefix: 'cloak-visual',
+			level: 2,
+		})
+
+		// Support shorter names for the global components, so we can use like
+		// `craft-visual` rather than `cloak-visual-craft`
+		dirs.push({
+			path: join(__dirname, './adapters/globals'),
+			extensions: ['js', 'coffee'],
 			level: 2,
 		})
 	})
