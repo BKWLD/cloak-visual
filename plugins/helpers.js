@@ -32,6 +32,9 @@ export function img(url, modifiers, options = {}, {
 	$img, domains, defaultProvider
 }) {
 
+	// If no URL passed, abort
+	if (!url) return
+
 	// If domains were provided, try and get just the image path
 	if (domains) url = imgPath(domains, url)
 
