@@ -2,6 +2,7 @@
 Render Responsive Visual where the responsive fields come from Craft
 ###
 import CloakResponsiveVisual from '../../components/responsive'
+import { aspectRatioFromImage } from './craft-visual'
 export default
 	functional: true
 
@@ -48,11 +49,11 @@ export expandSuperTableAssets = ({ image, video }) ->
 	{
 		...mergeIf 'landscapeImage', landscapeImage?.url
 		...mergeIf 'landscapeVideo', landscapeVideo?.url
-		...mergeIf 'landscapeAspect', aspectRatio landscapeImage
+		...mergeIf 'landscapeAspect', aspectRatioFromImage landscapeImage
 
 		...mergeIf 'portraitImage', portraitImage?.url
 		...mergeIf 'portraitVideo', portraitVideo?.url
-		...mergeIf 'portraitAspect', aspectRatio portraitImage
+		...mergeIf 'portraitAspect', aspectRatioFromImage portraitImage
 
 		...mergeIf 'alt', asset?.alt || asset?.title
 	}
@@ -61,7 +62,3 @@ export expandSuperTableAssets = ({ image, video }) ->
 # a little utility to make the code more readable
 mergeIf = (key, value) -> { [key]: value } if value
 
-# Get the aspect ratio if the asset exists
-aspectRatio = (asset) ->
-	return unless asset?.width and asset?.height
-	asset.width / asset.height
