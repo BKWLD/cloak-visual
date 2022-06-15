@@ -9,9 +9,14 @@ export default function() {
 	// Allow components to be auto-imported by Nuxt
 	this.nuxt.hook('components:dirs', dirs => {
 		dirs.push({
-			path: join(__dirname, './adapters'),
+			path: join(__dirname, './adapters/blocks'),
 			extensions: ['js', 'coffee'],
 			prefix: 'cloak-visual',
+			level: 2,
+		})
+		dirs.push({
+			path: join(__dirname, './adapters/globals'),
+			extensions: ['js', 'coffee'],
 			level: 2,
 		})
 		dirs.push({
