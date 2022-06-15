@@ -32,7 +32,7 @@ export default
 				portraitVideo: portraitVideo?.url
 
 				# Aspect ratios
-				lanscapeAspect: aspectRatio landscapeImage
+				landscapeAspect: aspectRatio landscapeImage
 				portraitAspect: aspectRatio portraitImage
 
 				# Shared values

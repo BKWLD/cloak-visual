@@ -12,7 +12,7 @@ export default
 		# Landscape asset props
 		landscapeImage: String
 		landscapeVideo: String
-		lanscapeAspect: Number
+		landscapeAspect: Number
 
 		# Portrait asset props
 		portraitImage: String
@@ -108,8 +108,10 @@ export default
 				image
 				video
 				landscapeImage: undefined
-				portraitImage: undefined
+				landscapeAspect: undefined
 				landscapeVideo: undefined
+				portraitImage: undefined
+				portraitAspect: undefined
 				portraitVideo: undefined
 			}
 
