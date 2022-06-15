@@ -62,8 +62,8 @@ export default
 		# mounted to decide which to show.  This prevents issues with differences
 		# between SSR and client. Otherwise, just use whichever we have.
 		responsiveVideo: ->
-			landscape = @landscape.props.video
-			portrait = @portrait.props.video
+			landscape = @landscape?.props.video
+			portrait = @portrait?.props.video
 			if landscape and portrait
 				return unless @mounted
 				if @isLandscape then landscape else portrait
