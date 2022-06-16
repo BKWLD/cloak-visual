@@ -32,9 +32,9 @@ export default
 				# Pass along props that are extrapolated from Craft data
 				image: image?.url
 				video: video?.url
-				aspect: aspectRatioFromImage image
-				alt: asset?.alt || asset?.title
-				objectPosition: objectPositionFromImage image
+				aspect: props.aspect ? aspectRatioFromImage image
+				alt: props.alt ? asset?.alt || asset?.title
+				objectPosition: props.objectPosition ? objectPositionFromImage image
 			}
 		}
 
