@@ -25,6 +25,8 @@ export default {
 }
 ```
 
+At the moment, there is **no support for Craft image transforms**. I'm not entirely sure I even want to support them because it puts a heavy load on the CMS server. Thus, when working with Craft, use 3rd party image CDN, like Imgix, or [the `static` provider](https://image.nuxtjs.org/getting-started/static).
+
 ### Project Dependencies
 
 - `.max-w*` styles (included in Cloak via `whitespace.styl`)
@@ -40,6 +42,8 @@ Set these properties within `cloak: { visual: { ... } }` in the nuxt.config.js:
 ## Usage
 
 ### Components
+
+#### Generic
 
 `<cloak-visual />`
 
@@ -69,6 +73,42 @@ The block component simply renders a 100% width Visual within the max-width gutt
 - props:
   - `maxWidth` - A `max-w-*` class to apply to the block
   - ... all other `cloak-visual-responsive` props
+
+#### Craft
+
+`<cloak-visual-craft-block />`
+
+Renders a `cloak-visual-responsive` at 100vw but with max-width gutters. It's expecting data from a GQL fragment like this:
+
+```gql
+#import "@cloak-app/craft/queries/fragments/responsive-image.gql"
+#import "@cloak-app/craft/queries/fragments/responsive-video.gql"
+
+fragment mediaAssetBlock on blocks_mediaAsset_BlockType {
+  image: responsiveImage { ... responsiveImage }
+  video: responsiveVideo { ... responsiveVideo }
+  maxWidth
+}
+```
+
+`<responsive-craft-visual />`
+
+Renders a `cloak-visual-responsive` instance using Craft Super Table objects that contain landscape and portrait assets.
+
+- props:
+  - `image` - Expecting an object from [`queries/fragments/responsive-image.gql`](./queries/fragments/responsive-image.gql)
+  - `video` - Expecting an object from [`queries/fragments/responsive-video.gql`](./queries/fragments/responsive-video.gql)
+  - ... all other `cloak-visual-responsive` props
+
+`<craft-visual />`
+
+Renders a `cloak-visual` instance using Craft asset objects.
+
+- props:
+  - `image` - Expecting an object from [`queries/fragments/image.gql`](./queries/fragments/image.gql)
+  - `video` - Expecting an object from [`queries/fragments/video.gql`](./queries/fragments/video.gql)
+  - ... all other `cloak-visual` props
+
 
 ## Contributing
 
