@@ -3,7 +3,6 @@
 <script lang='coffee'>
 import CloakVisual from './visual'
 export default
-	name: 'ResponsiveCraftVisual'
 
 	props: {
 
@@ -13,7 +12,7 @@ export default
 		# Landscape asset props
 		landscapeImage: String
 		landscapeVideo: String
-		lanscapeAspect: Number
+		landscapeAspect: Number
 
 		# Portrait asset props
 		portraitImage: String
@@ -63,8 +62,8 @@ export default
 		# mounted to decide which to show.  This prevents issues with differences
 		# between SSR and client. Otherwise, just use whichever we have.
 		responsiveVideo: ->
-			landscape = @landscape.props.video
-			portrait = @portrait.props.video
+			landscape = @landscape?.props.video
+			portrait = @portrait?.props.video
 			if landscape and portrait
 				return unless @mounted
 				if @isLandscape then landscape else portrait
@@ -109,8 +108,10 @@ export default
 				image
 				video
 				landscapeImage: undefined
-				portraitImage: undefined
+				landscapeAspect: undefined
 				landscapeVideo: undefined
+				portraitImage: undefined
+				portraitAspect: undefined
 				portraitVideo: undefined
 			}
 
