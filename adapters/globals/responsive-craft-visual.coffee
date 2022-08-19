@@ -17,7 +17,7 @@ export default
 
 	# Make the responsive component
 	render: (create, { props, data }) ->
-		create 'cloak-visual-responsive', {
+		create CloakResponsiveVisual, {
 			...data
 			props: {
 				...props

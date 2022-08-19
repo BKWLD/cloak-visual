@@ -24,7 +24,7 @@ export default
 		asset = image || video
 
 		# Pass along to cloak-visual
-		create 'cloak-visual', {
+		create CloakVisual, {
 			...data
 			props: {
 				...props
