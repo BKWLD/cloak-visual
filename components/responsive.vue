@@ -3,6 +3,7 @@
 <script lang='coffee'>
 import CloakVisual from './visual'
 export default
+	name: 'ResponsiveVisual'
 
 	props: {
 
@@ -95,8 +96,17 @@ export default
 		# Make the aspect css style
 		makeAspectStyle: (viewportType) ->
 			return unless image = @[viewportType].props.image
-			aspect = image.width / image.height
-			return "#{1 / aspect * 100}%"
+
+			# Return explicitly passed in aspect
+			if aspect = explicitAspect = @[viewportType + 'Aspect']
+			then return @percentageAspect aspect
+
+			# Make aspect from image if values are provided
+			if typeof image == 'object' and image.width and image.height
+			then return @percentageAspect image.width / image.height
+
+		# Return a fractional aspect as a CSS percentage
+		percentageAspect: (aspect) -> "#{1 / aspect * 100}%"
 
 		# Make the config object for the create function by keeping all data and
 		# props except for replacing landscape and portrait with the asset itself
