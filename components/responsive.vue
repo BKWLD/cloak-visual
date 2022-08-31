@@ -157,7 +157,7 @@ export default
 <style lang='stylus' scoped>
 
 // Add responsive aspect ratio
-.responsive-visual >>> .vv-aspect-shim
+.responsive-visual :deep(.vv-aspect-shim)
 	@media(orientation landscape)
 		padding-top var(--landscape-aspect) !important
 	@media(orientation portrait)
