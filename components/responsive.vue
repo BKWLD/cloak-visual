@@ -3,6 +3,7 @@
 <script lang='coffee'>
 import CloakVisual from './visual'
 export default
+	name: 'ResponsiveVisual'
 
 	props: {
 
