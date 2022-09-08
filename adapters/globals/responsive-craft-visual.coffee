@@ -32,8 +32,10 @@ export default
 		}
 
 # Take an object with image and video fields from our Super Table pattern and
-# expand it into the more generic props that the responsive componet expects
-export expandSuperTableAssets = ({ image, video }) ->
+# expand it into the more generic props that the responsive component expects
+export expandSuperTableAssets = ({
+	image, video, landscapeAspect, portraitAspect
+}) ->
 
 	# Access the Super Table objects that contain the actual asset objects
 	landscapeImage = (image?[0] || image)?.landscape?[0]
@@ -45,15 +47,18 @@ export expandSuperTableAssets = ({ image, video }) ->
 	asset = landscapeImage || portraitImage || landscapeVideo || portraitVideo
 
 	# Make an object with the keys of cloak-visual-responsive where values
-	# are non-empty
+	# are non-empty. If an explicit aspect was passed in, use it instead of the
+	# value we read from the image object.
 	{
 		...mergeIf 'landscapeImage', landscapeImage?.url
 		...mergeIf 'landscapeVideo', landscapeVideo?.url
-		...mergeIf 'landscapeAspect', aspectRatioFromImage landscapeImage
+		...mergeIf 'landscapeAspect', landscapeAspect ||
+			aspectRatioFromImage landscapeImage
 
 		...mergeIf 'portraitImage', portraitImage?.url
 		...mergeIf 'portraitVideo', portraitVideo?.url
-		...mergeIf 'portraitAspect', aspectRatioFromImage portraitImage
+		...mergeIf 'portraitAspect', portraitAspect ||
+			aspectRatioFromImage portraitImage
 
 		...mergeIf 'alt', asset?.alt || asset?.title
 	}
