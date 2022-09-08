@@ -44,7 +44,8 @@ export default
 		isResponsive: -> !!(@landscape and @portrait)
 
 		# The config used when there is both landscape and portrait assets. The
-		# video prop will only be set once the viewport can be measured.
+		# video prop will only be set once the viewport can be measured. Using
+		# the landscape configs for prop values that aren't aspect dependant.
 		responsiveConfig: ->
 			return unless @isResponsive
 			{
@@ -52,6 +53,10 @@ export default
 				props: {
 					...@landscape.props
 					video: @responsiveVideo
+
+					# Force the aspect-shim to be added. The actual ratio will be
+					# overridden with !important
+					aspect: 1
 				}
 				class: 'responsive-visual'
 				style:
@@ -117,6 +122,7 @@ export default
 				...@$props
 				image
 				video
+				aspect: 1
 				landscapeImage: undefined
 				landscapeAspect: undefined
 				landscapeVideo: undefined
@@ -133,10 +139,14 @@ export default
 	# Make the appropriate visual instance
 	render: (create) ->
 
-		# Create visual for the current viewport width
+		# Create visual instance
 		if @landscape || @portrait
+
+			# ... using a single asset since only one was passed in
 			unless @isResponsive
 			then create CloakVisual, @landscape || @portrait, @$slots.default
+
+			# ... or using multiple assets as different sources
 			else create CloakVisual, {
 				...@responsiveConfig
 				scopedSlots: ['image-source']: =>
