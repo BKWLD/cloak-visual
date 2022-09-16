@@ -122,7 +122,6 @@ export default
 				...@$props
 				image
 				video
-				aspect: 1
 				landscapeImage: undefined
 				landscapeAspect: undefined
 				landscapeVideo: undefined
