@@ -61,9 +61,9 @@ Conditionally render landscape or portrait visual instances using `imgix` to pro
 The aspect ratio can be explicitly set through this component as well.
 
 <cloak-visual-responsive
-  landscape-image='/assets/landscape.jpg'
-  :landscape-aspect='16/9'
-  :portrait-aspect='4/3'
+  image='/assets/landscape.jpg'
+  :landscape-aspect='3/1'
+  :portrait-aspect='2/1'
   provider='imgix'
   sizes='100vw'
   alt='Cyberpunk vibes demo image'>
@@ -71,9 +71,8 @@ The aspect ratio can be explicitly set through this component as well.
 
 ```vue
 <cloak-visual-responsive
-  landscape-image='/assets/landscape.jpg'
+  image='/assets/landscape.jpg'
   :landscape-aspect='16/9'
-  :portrait-aspect='4/3'
   provider='imgix'
   sizes='100vw'
   alt='Cyberpunk vibes demo image'>
