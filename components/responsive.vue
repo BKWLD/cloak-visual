@@ -36,33 +36,14 @@ export default
 
 	computed:
 
-		# Visual configs
-		landscape: -> @makeConfig @landscapeImage, @landscapeVideo
-		portrait: -> @makeConfig @portraitImage, @portraitVideo
-
-		# Do we have unique landscape and portrait configs?
-		isResponsive: -> !!(@landscape and @portrait)
-
-		# The config used when there is both landscape and portrait assets. The
-		# video prop will only be set once the viewport can be measured. Using
-		# the landscape configs for prop values that aren't aspect dependant.
-		responsiveConfig: ->
-			return unless @isResponsive
-			{
-				...@landscape
-				props: {
-					...@landscape.props
-					video: @responsiveVideo
-
-					# Force the aspect-shim to be added. The actual ratio will be
-					# overridden with !important
-					aspect: 1
-				}
-				class: 'responsive-visual'
-				style:
-					'--landscape-aspect': @makeAspectStyle 'landscape'
-					'--portrait-aspect': @makeAspectStyle 'portrait'
-			}
+		# Make responsive style rules, if relavent
+		responsiveAspectStyles: ->
+			styles = {}
+			if @landscapeAspect
+			then styles['--landscape-aspect'] = @percentageAspect @landscapeAspect
+			if @portraitAspect
+			then styles['--portrait-aspect'] = @percentageAspect @portraitAspect
+			return styles
 
 		# If there are both landscape and portrait videos, wait till the page is
 		# mounted to decide which to show.  This prevents issues with differences
@@ -70,14 +51,20 @@ export default
 		responsiveVideo: ->
 			landscape = @landscape?.props.video
 			portrait = @portrait?.props.video
-			if landscape and portrait
+			if @landscapeVideo and @portraitVideo
 				return unless @mounted
-				if @isLandscape then landscape else portrait
-			else landscape || portrait
+				if @isLandscape then @landscapeVideo else @portraitVideo
+			else @landscapeVideo || @portraitVideo
+
+		# Make the image prop
+		responsiveImage: ->
+			if @landscapeImage and @portraitImage
+			then @landscapeImage # Visual requires an image value
+			else @landscapeImage || @portraitImage || @image
 
 		# Make responsive sources
 		responsiveSources: ->
-			return unless @isResponsive
+			return unless @landscapeImage and @portraitImage
 			[
 				{
 					attrs:
@@ -98,67 +85,51 @@ export default
 		# Store whether orientation is currently landscape
 		checkIsLandscape: (e) -> @isLandscape = e.matches
 
-		# Make the aspect css style
-		makeAspectStyle: (viewportType) ->
-			return unless image = @[viewportType].props.image
-
-			# Return explicitly passed in aspect
-			if aspect = explicitAspect = @[viewportType + 'Aspect']
-			then return @percentageAspect aspect
-
-			# Make aspect from image if values are provided
-			if typeof image == 'object' and image.width and image.height
-			then return @percentageAspect image.width / image.height
-
 		# Return a fractional aspect as a CSS percentage
 		percentageAspect: (aspect) -> "#{1 / aspect * 100}%"
-
-		# Make the config object for the create function by keeping all data and
-		# props except for replacing landscape and portrait with the asset itself
-		makeConfig: (image, video) ->
-			return unless image or video
-			on: loaded: => @$emit 'loaded'
-			props: {
-				...@$props
-				image
-				video
-				aspect: 1
-				landscapeImage: undefined
-				landscapeAspect: undefined
-				landscapeVideo: undefined
-				portraitImage: undefined
-				portraitAspect: undefined
-				portraitVideo: undefined
-			}
 
 		# Build the srcset using inheritted props
 		makeSrcset: (source) ->
 			{ provider, preset } = @$props
 			@$cloakSrcset source, {}, { provider, preset }
 
-	# Make the appropriate visual instance
+	# Create a single Clocak Visual instance
 	render: (create) ->
+		return create CloakVisual, {
 
-		# Create visual instance
-		if @landscape || @portrait
+			# Add classes
+			class:
+				'responsive-visual': true
+				'has-landscape-aspect': @landscapeAspect
+				'has-portrait-aspect': @portraitAspect
 
-			# ... using a single asset since only one was passed in
-			unless @isResponsive
-			then create CloakVisual, @landscape || @portrait, @$slots.default
+			# Add CSS variables for overriding the aspect ratio
+			style: @responsiveAspectStyles
 
-			# ... or using multiple assets as different sources
-			else create CloakVisual, {
-				...@responsiveConfig
-				scopedSlots: ['image-source']: =>
-					@responsiveSources.map (data) -> create 'source', data
-			}, @$slots.default
+			props: {
 
-		# No assets were discovered, so explicitly clear the asset props
-		else create CloakVisual, { props: {
-			...@$props
-			image: undefined
-			video: undefined
-		}}, @$slots.default
+				# Passthrough props
+				...@$props
+
+				# The calculated image and video values
+				image: @responsiveImage
+				video: @responsiveVideo
+
+				# Clear props that were unique to this component
+				landscapeImage: undefined
+				landscapeVideo: undefined
+				landscapeAspect: undefined
+				portraitImage: undefined
+				portraitVideo: undefined
+				portraitAspect: undefined
+			}
+
+			# Provide responsive source elements
+			scopedSlots: ['image-source']: =>
+				@responsiveSources?.map (data) -> create 'source', data
+
+		# Passthrough slot
+		}, @$slots.default
 
 </script>
 
@@ -166,11 +137,41 @@ export default
 
 <style lang='stylus' scoped>
 
-// Add responsive aspect ratio
-.responsive-visual :deep(.vv-aspect-shim)
+// Helper method to expand the things that Visual's expand prop expands
+expandVisual()
+	:deep(.vv-wrapper)
+	:deep(.vv-picture)
+	:deep(.vv-asset)
+		position absolute
+		left 0
+		top 0
+		width 100%
+		height 100%
+
+// Apply the aspect ratio setting rules
+applyAspectRatioRules(aspectVar)
+
+	// Override shim aspect ratio, when a default aspect was passed to visual
+	&.vv-has-aspect :deep(.vv-aspect-shim)
+		padding-top var(aspectVar) !important
+
+	// When no aspect was passed as a prop, set aspect via pseudo selector
+	&:not(.vv-has-aspect)
+		expandVisual()
+		&:before
+			content ''
+			height 100%
+			display inline-block
+			padding-top var(aspectVar) !important
+
+// Add landscape aspect ratio
+.has-landscape-aspect
 	@media(orientation landscape)
-		padding-top var(--landscape-aspect) !important
+		applyAspectRatioRules(--landscape-aspect)
+
+// Add portrait aspect ratio
+.has-portrait-aspect
 	@media(orientation portrait)
-		padding-top var(--portrait-aspect) !important
+		applyAspectRatioRules(--portrait-aspect)
 
 </style>

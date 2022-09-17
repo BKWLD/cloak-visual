@@ -58,6 +58,27 @@ Conditionally render landscape or portrait visual instances using `imgix` to pro
 </cloak-visual-responsive>
 ```
 
+The aspect ratio can be explicitly set through this component as well.
+
+<cloak-visual-responsive
+  image='/assets/landscape.jpg'
+  :landscape-aspect='3/1'
+  :portrait-aspect='2/1'
+  provider='imgix'
+  sizes='100vw'
+  alt='Cyberpunk vibes demo image'>
+</cloak-visual-responsive>
+
+```vue
+<cloak-visual-responsive
+  image='/assets/landscape.jpg'
+  :landscape-aspect='16/9'
+  provider='imgix'
+  sizes='100vw'
+  alt='Cyberpunk vibes demo image'>
+</cloak-visual-responsive>
+```
+
 ## Block component
 
 The block component simply renders a 100% width Visual within the max-width gutters using the default `@nuxt/image` provider.  I'm using full URLs like would be returned from a CMS's storage. The domains of the CMS storage must be added to the `image.domains` array in your `nuxt.config`.
