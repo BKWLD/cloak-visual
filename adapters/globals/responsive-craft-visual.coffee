@@ -46,8 +46,8 @@ export default
 			...data
 			props: {
 				...props
-				image: props.landscapeImage || props.portraitImage || props.image
-				video: props.landscapeVideo || props.portraitVideo || props.video
+				image: props.landscapeImage || props.portraitImage
+				video: props.landscapeVideo || props.portraitVideo
 				aspect: props.landscapeAspect || props.portraitAspect || props.aspect
 
 				# Remove responsive field values
