@@ -2,6 +2,7 @@
 Render Responsive Visual where the responsive fields come from Craft
 ###
 import CloakResponsiveVisual from '../../components/responsive'
+import CloakVisual from '../../components/visual'
 import { aspectRatioFromImage } from './craft-visual'
 export default
 	functional: true
@@ -15,19 +16,47 @@ export default
 		video: Object | Array
 	}
 
-	# Make the responsive component
+	# Make the visual component
 	render: (create, { props, data }) ->
-		create CloakResponsiveVisual, {
+
+		# Get props that responsive visual expects
+		props =	{
+			...props
+			...expandSuperTableAssets props
+		}
+
+		# Render a responsive visual if at least one of the responsive props has
+		# values for both landscape and portarit
+		if (props.landscapeImage and props.portraitImage) ||
+			(props.landscapeVideo and props.portraitVideo) ||
+			(props.landscapeAspect and props.portraitAspect)
+		then create CloakResponsiveVisual, {
 			...data
 			props: {
 				...props
 
-				# Consume Super Table props
-				...expandSuperTableAssets props
-
 				# Remove Super Table field values now that they've been mapped
 				image: undefined
 				video: undefined
+			}
+		}
+
+		# Otherwsie, render a standard cloak-visual
+		else create CloakVisual, {
+			...data
+			props: {
+				...props
+				image: props.landscapeImage || props.portraitImage || props.image
+				video: props.landscapeVideo || props.portraitVideo || props.video
+				aspect: props.landscapeAspect || props.portraitAspect || props.aspect
+
+				# Remove responsive field values
+				landscapeImage: undefined
+				portraitImage: undefined
+				landscapeVideo: undefined
+				portraitVideo: undefined
+				landscapeAspect: undefined
+				portraitAspect: undefined
 			}
 		}
 
