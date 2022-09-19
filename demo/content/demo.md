@@ -96,3 +96,94 @@ The block component simply renders a 100% width Visual within the max-width gutt
   alt='Cyberpunk vibes demo image'>
 </cloak-visual-block>
 ```
+
+## Craft Visuals
+
+Use the Craft adapter components to render Visual instances from Craft objects.  This example shows using `<responsive-craft-visual>` using a SuperTable image and video fields, where only one landscape image was provided. As a result, a non-responsive `<cloak-visual>` component is rendered.
+
+<responsive-craft-visual
+  :image='[{
+      "id":"7884",
+      "landscape":[{
+        "id":"1193",
+        "width":1324,
+        "height":745,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "path":"retreat.jpg",
+        "url":"/assets/landscape.jpg"
+      }],
+      "portrait":[]
+    }]'>
+</responsive-craft-visual>
+
+```vue
+<responsive-craft-visual
+  :image='[{
+      "id":"7884",
+      "landscape":[{
+        "id":"1193",
+        "width":3840,
+        "height":2160,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "url":"/assets/landscape.jpg"
+      }],
+      "portrait":[]
+    }]'>
+</responsive-craft-visual>
+```
+
+However, if multiple asssets are provided, a `<cloak-responsive>` instance is rendered:
+
+<responsive-craft-visual
+  :image='[{
+      "id":"7884",
+      "landscape":[{
+        "id":"1193",
+        "width":3840,
+        "height":2160,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "url":"/assets/landscape.jpg"
+      }],
+      "portrait":[{
+        "id":"1193",
+        "width":2160,
+        "height":2160,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "url":"/assets/portrait.png"
+      }]
+    }]'>
+</responsive-craft-visual>
+
+```vue
+<responsive-craft-visual
+  :image='[{
+      "id":"7884",
+      "landscape":[{
+        "id":"1193",
+        "width":3840,
+        "height":2160,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "url":"/assets/landscape.jpg"
+      }],
+      "portrait":[{
+        "id":"1193",
+        "width":2160,
+        "height":2160,
+        "title":"Retreat",
+        "mimeType":"image/jpeg",
+        "focalPoint":[0.5,0.5],
+        "url":"/assets/portrait.png"
+      }]
+    }]'>
+</responsive-craft-visual>
+```
