@@ -122,8 +122,10 @@ export default
 
 		# Make a srceset using @nuxt/image unless sources were slotted in (they
 		# will contain the srcet)
-		srcset = if scopedSlots['image-source'] then undefined
-		else parent.$cloakSrcset props.image, {}, { provider, preset }
+		srcset = switch
+			when scopedSlots['image-source'] then undefined
+			when props.srcset then props.srcset
+			else parent.$cloakSrcset props.image, {}, { provider, preset }
 
 		# Instantiate a Visual instance
 		create Visual, {
