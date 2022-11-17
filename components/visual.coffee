@@ -92,10 +92,6 @@ export default
 			else props.width
 		else props.sizes
 
-		# Warn developers to specify a sizes prop
-		if props.srcset and !sizes and process.env.APP_ENV == 'dev'
-		then console.debug "No sizes prop for #{props.image}"
-
 		# Clear placeholder color if `no-placeholder` prop is set or if the image
 		# is of a format that woulds support transparency.  The latter is handy
 		# for product images.
@@ -122,8 +118,14 @@ export default
 
 		# Make a srceset using @nuxt/image unless sources were slotted in (they
 		# will contain the srcet)
-		srcset = if scopedSlots['image-source'] then undefined
-		else parent.$cloakSrcset props.image, {}, { provider, preset }
+		srcset = switch
+			when scopedSlots['image-source'] then undefined
+			when props.srcset then props.srcset
+			else parent.$cloakSrcset props.image, {}, { provider, preset }
+
+		# Warn developers to specify a sizes prop
+		if srcset and !sizes and process.env.APP_ENV == 'dev'
+		then console.debug "No sizes prop for #{props.image}"
 
 		# Instantiate a Visual instance
 		create Visual, {
