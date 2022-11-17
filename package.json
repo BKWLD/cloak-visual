@@ -1,6 +1,6 @@
 {
 	"name": "@cloak-app/visual",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Adpaters for vue-visual using @nuxt/image.",
 	"repository": "git@github.com:BKWLD/cloak-visual.git",
 	"author": "Bukwild <info@bukwild.com>",
