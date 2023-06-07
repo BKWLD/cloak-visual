@@ -51,7 +51,7 @@ function getAssetRef(source) {
 
 // Make object-position values from the hotspot data
 export function makeObjectPosition(source) {
-  if (!source.hotspot) return
+  if (!source?.hotspot) return
   const left = source.hotspot.x - source.crop.left + source.crop.right,
     top =  source.hotspot.y - source.crop.top + source.crop.bottom
   return `${left * 100}% ${(top) * 100}%`
