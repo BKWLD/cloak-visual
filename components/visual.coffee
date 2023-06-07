@@ -18,9 +18,10 @@ export default
 	props: {
 		...baseProps
 
-		# Disable the default @nuxt/image provider
+		# @nuxt/image props
 		provider: String
 		preset: String
+		modifiers: Object
 
 		# Support additional types
 		aspect: Number | String | Boolean
@@ -113,15 +114,15 @@ export default
 
 		# Route the image through @nuxt/image.
 		# https://image.nuxtjs.org/api/$img
-		{ provider, preset } = props
-		image = parent.$cloakImg props.image, {}, { provider, preset }
+		{ provider, preset, modifiers } = props
+		image = parent.$cloakImg props.image, modifiers, { provider, preset }
 
 		# Make a srceset using @nuxt/image unless sources were slotted in (they
 		# will contain the srcet)
 		srcset = switch
 			when scopedSlots['image-source'] then undefined
 			when props.srcset then props.srcset
-			else parent.$cloakSrcset props.image, {}, { provider, preset }
+			else parent.$cloakSrcset props.image, modifiers, { provider, preset }
 
 		# Warn developers to specify a sizes prop
 		if srcset and !sizes and process.env.APP_ENV == 'dev'
