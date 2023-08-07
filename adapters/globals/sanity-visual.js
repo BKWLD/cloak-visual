@@ -26,7 +26,7 @@ export default {
 
         // Pass along props that were extrapolated from Sanity objects
         image: getAssetRef(props.image),
-        video: getAssetRef(props.video),
+        video: getVideoUrl(props.video),
         aspect: props.aspect ||
           props.image?.asset?.metadata?.dimensions?.aspectRatio,
         alt: props.alt || props.image?.alt,
@@ -47,6 +47,13 @@ export default {
 // isn't.
 function getAssetRef(source) {
   return source?.asset?._id || source?.asset?._ref
+}
+
+// Get the video URL assuming it's been derefernced.  I didn't build support
+// for ref support here but it should be technically possible
+function getVideoUrl(source) {
+  const dereferencedUrl = source?.asset?.url
+  if (dereferencedUrl) return dereferencedUrl
 }
 
 // Make object-position values from the hotspot data
