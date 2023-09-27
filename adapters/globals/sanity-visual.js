@@ -29,7 +29,7 @@ export default {
         video: getVideoUrl(props.video),
         aspect: props.aspect ||
           props.image?.asset?.metadata?.dimensions?.aspectRatio,
-        alt: props.alt || props.image?.alt,
+        alt: props.alt || props.image?.alt || "",
         objectPosition: props.objectPosition || makeObjectPosition(props.image),
 
         // Apply cropping
