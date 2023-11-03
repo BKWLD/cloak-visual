@@ -21,6 +21,26 @@ export default
 		portraitAspect: Number
 	}
 
+	head: ->
+		return {} unless @isResponsiveImage and @preload
+
+		return link: [
+			{
+				rel: 'preload'
+				as: 'image'
+				imagesrcset: @makeSrcset @landscapeImage
+				href: @landscapeImage
+				imagesizes: @sizes
+			}
+			{
+				rel: 'preload'
+				as: 'image'
+				imagesrcset: @makeSrcset @portraitImage
+				href: @portraitImage
+				imagesizes: @sizes
+			}
+		]
+
 	data: ->
 		mounted: false
 		isLandscape: null
@@ -35,6 +55,8 @@ export default
 		@isLanscapeMediaQuery?.removeListener @checkIsLandscape
 
 	computed:
+
+		isResponsiveImage: -> !!(@landscapeImage and @portraitImage)
 
 		# Make responsive style rules, if relavent
 		responsiveAspectStyles: ->
