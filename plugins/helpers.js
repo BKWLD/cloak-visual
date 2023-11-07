@@ -86,9 +86,13 @@ export function srcset(url, sizes, modifiers, options, {
 		sizes = sizes.filter(size => size <= maxWidth)
 	}
 
-	// Make array of srcsets
+	// Make array of srcsets. Only encode the URL if it's not already encoded.
+	// I'm using decodeURIComponent rather than decodeURI so that it also tries
+	// to decode `@` symbols, which I found encoded in some image paths.
 	return sizes.map(size => {
 		const sizedUrl = $cloakImg(url, { ...modifiers, width: size }, options)
-		return `${encodeURI(sizedUrl)} ${size}w`
+		const encodedUrl = decodeURIComponent(sizedUrl) == sizedUrl ?
+			encodeURI(sizedUrl) : sizedUrl
+		return `${encodedUrl} ${size}w`
 	}).join(', ')
 }
