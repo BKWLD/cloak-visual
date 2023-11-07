@@ -31,6 +31,7 @@ export default
 				imagesrcset: @makeSrcset @landscapeImage
 				href: @landscapeImage
 				imagesizes: @sizes
+				media: "(orientation: landscape)"
 			}
 			{
 				rel: 'preload'
@@ -38,6 +39,7 @@ export default
 				imagesrcset: @makeSrcset @portraitImage
 				href: @portraitImage
 				imagesizes: @sizes
+				media: "(orientation: portrait)"
 			}
 		]
 
