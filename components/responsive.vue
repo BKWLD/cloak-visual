@@ -21,6 +21,28 @@ export default
 		portraitAspect: Number
 	}
 
+	# Add preload link tag
+	head: ->
+		return unless @isResponsiveImage and @preload
+		return link: [
+			{
+				rel: 'preload'
+				as: 'image'
+				href: @landscapeImage
+				imagesrcset: @makeSrcset @landscapeImage
+				imagesizes: @sizes || ''
+				media: '(orientation: landscape)'
+			}
+			{
+				rel: 'preload'
+				as: 'image'
+				href: @portraitImage
+				imagesrcset: @makeSrcset @portraitImage
+				imagesizes: @sizes || ''
+				media: '(orientation: portrait)'
+			}
+		]
+
 	data: ->
 		mounted: false
 		isLandscape: null
@@ -35,6 +57,9 @@ export default
 		@isLanscapeMediaQuery?.removeListener @checkIsLandscape
 
 	computed:
+
+		# Check that both responsive props are populated
+		isResponsiveImage: -> !!(@landscapeImage and @portraitImage)
 
 		# Make responsive style rules, if relavent
 		responsiveAspectStyles: ->
@@ -58,13 +83,13 @@ export default
 
 		# Make the image prop
 		responsiveImage: ->
-			if @landscapeImage and @portraitImage
+			if @isResponsiveImage
 			then @landscapeImage # Visual requires an image value
 			else @landscapeImage || @portraitImage || @image
 
 		# Make responsive sources
 		responsiveSources: ->
-			return unless @landscapeImage and @portraitImage
+			return unless @isResponsiveImage
 			[
 				{
 					attrs:
@@ -114,6 +139,10 @@ export default
 				# The calculated image and video values
 				image: @responsiveImage
 				video: @responsiveVideo
+
+				# Don't pass preload to visual instance if we are adding responsive
+				# preload
+				preload: if @isResponsiveImage then false else @$props.preload
 
 				# Clear props that were unique to this component
 				landscapeImage: undefined

@@ -2,17 +2,21 @@
 
 ## Base component
 
-Renders a `vue-visual` instance using Cloak defaults.  When deployed to Netlify,this uses [the `netlify` provider](https://image.nuxtjs.org/providers/netlify) to produce a srcset.
+Renders a `vue-visual` instance using Cloak defaults.  When deployed to Netlify,this uses [the `netlify` provider](https://image.nuxtjs.org/providers/netlify) to produce a srcset, which is why `sizes` have been defined as well. In addition, the `preload` attribute has been added here since this image is above the fold.
 
 <cloak-visual
+  preload
   image='/assets/landscape.jpg'
-  alt='Cyberpunk vibes demo image'>
+  alt='Cyberpunk vibes demo image'
+  sizes='(max-width: 1062px) 100vw, 1062px'>
 </cloak-visual>
 
 ```vue
 <cloak-visual
+  preload
   image='/assets/landscape.jpg'
-  alt='Cyberpunk vibes demo image'>
+  alt='Cyberpunk vibes demo image'
+  sizes='(max-width: 1062px) 100vw, 1062px'>
 </cloak-visual>
 ```
 

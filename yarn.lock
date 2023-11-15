@@ -10912,10 +10912,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-visual@^2.0.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/vue-visual/-/vue-visual-2.6.0.tgz#083c6f83d755d59819db63e10ad249deef4da358"
-  integrity sha512-clCxWyA8YwjFOUSR+9vXXUomBto4v/+PqP/0DXtsIvOAACnKyDXtKRvHZzTY0EOfNinWZ/7NzTZ0aXgeYhJpVg==
+vue-visual@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vue-visual/-/vue-visual-2.7.0.tgz#e300958f27239fae954dc902fa6f47d3b8002047"
+  integrity sha512-Uc7CYkkBMmKUsYM450m9VBuWg3ODr9VctPFxtf70C/r5/Tltktxd6mBVD0GxZ0fkDzCsm+CEMQD6E9BGXUAEGw==
 
 vue@^2.6.12:
   version "2.7.10"
@@ -10993,7 +10993,7 @@ webpack-dev-middleware@^4.2.0:
     range-parser "^1.2.1"
     schema-utils "^3.0.0"
 
-"webpack-graphql-loader@github:gpoitch/graphql-loader#gp/refresh":
+webpack-graphql-loader@gpoitch/graphql-loader#gp/refresh:
   version "1.0.2"
   resolved "https://codeload.github.com/gpoitch/graphql-loader/tar.gz/42f0f990a6132ccd5e284d0e6cfeade12728dba2"
   dependencies:
