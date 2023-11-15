@@ -23,7 +23,6 @@ export default
 
 	head: ->
 		return unless @isResponsiveImage and @preload
-
 		return link: [
 			{
 				rel: 'preload'
@@ -119,9 +118,6 @@ export default
 
 	# Create a single Clocak Visual instance
 	render: (create) ->
-		# Don't pass preload to visual instance if we are adding responsive preload
-		preload = if @isResponsiveImage then false else @$props.preload
-
 		return create CloakVisual, {
 
 			# Add classes
@@ -142,6 +138,10 @@ export default
 				image: @responsiveImage
 				video: @responsiveVideo
 
+				# Don't pass preload to visual instance if we are adding responsive
+				# preload
+				preload: if @isResponsiveImage then false else @$props.preload
+
 				# Clear props that were unique to this component
 				landscapeImage: undefined
 				landscapeVideo: undefined
@@ -149,7 +149,6 @@ export default
 				portraitImage: undefined
 				portraitVideo: undefined
 				portraitAspect: undefined
-				preload
 			}
 
 			# Provide responsive source elements
