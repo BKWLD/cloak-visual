@@ -26,6 +26,12 @@ export default {
 		imgix: {
 			baseURL: 'https://cloak-visual.imgix.net',
 		},
+
+		// Creds from nuxt-sanity-demo
+		sanity: {
+			projectId: 'rnb0s8f2',
+			dataset: 'production',
+		}
 	},
 
 	// @nuxt/content can't be loaded from module

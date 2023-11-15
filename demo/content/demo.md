@@ -187,3 +187,41 @@ However, if multiple asssets are provided, a `<cloak-responsive>` instance is re
   }]'>
 </responsive-craft-visual>
 ```
+
+## Sanity Visual
+
+Here's an example of the `<sanity-visual>` adapter.
+
+<sanity-visual
+  :image='{
+    "_type":"image",
+    "alt": "Sanity example image",
+    "asset": {
+      "_id": "image-c19d82f29faceae87bcf7e9cd18b08291f59f11b-3840x2160-jpg",
+      "url": "https://cdn.sanity.io/images/rnb0s8f2/production/c19d82f29faceae87bcf7e9cd18b08291f59f11b-3840x2160.jpg",
+      "metadata": {
+        "dimensions": {
+          "aspectRatio": 1.7777777778,
+        }
+      }
+    }
+  }'>
+</sanity-visual>
+
+```vue
+<sanity-visual
+  :image='{
+    "_type":"image",
+    "alt": "Sanity example image",
+    "asset": {
+      "_id": "image-c19d82f29faceae87bcf7e9cd18b08291f59f11b-3840x2160-jpg",
+      "url": "https://cdn.sanity.io/images/rnb0s8f2/production/c19d82f29faceae87bcf7e9cd18b08291f59f11b-3840x2160.jpg",
+      "metadata": {
+        "dimensions": {
+          "aspectRatio": 1.7777777778,
+        }
+      }
+    }
+  }'>
+</sanity-visual>
+```
