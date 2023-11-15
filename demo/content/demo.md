@@ -103,36 +103,36 @@ Use the Craft adapter components to render Visual instances from Craft objects. 
 
 <responsive-craft-visual
   :image='[{
-      "id":"7884",
-      "landscape":[{
-        "id":"1193",
-        "width":1324,
-        "height":745,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "path":"retreat.jpg",
-        "url":"/assets/landscape.jpg"
-      }],
-      "portrait":[]
-    }]'>
+    "id":"7884",
+    "landscape":[{
+      "id":"1193",
+      "width":1324,
+      "height":745,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "path":"retreat.jpg",
+      "url":"/assets/landscape.jpg"
+    }],
+    "portrait":[]
+  }]'>
 </responsive-craft-visual>
 
 ```vue
 <responsive-craft-visual
   :image='[{
-      "id":"7884",
-      "landscape":[{
-        "id":"1193",
-        "width":3840,
-        "height":2160,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "url":"/assets/landscape.jpg"
-      }],
-      "portrait":[]
-    }]'>
+    "id":"7884",
+    "landscape":[{
+      "id":"1193",
+      "width":3840,
+      "height":2160,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "url":"/assets/landscape.jpg"
+    }],
+    "portrait":[]
+  }]'>
 </responsive-craft-visual>
 ```
 
@@ -140,50 +140,50 @@ However, if multiple asssets are provided, a `<cloak-responsive>` instance is re
 
 <responsive-craft-visual
   :image='[{
-      "id":"7884",
-      "landscape":[{
-        "id":"1193",
-        "width":3840,
-        "height":2160,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "url":"/assets/landscape.jpg"
-      }],
-      "portrait":[{
-        "id":"1193",
-        "width":2160,
-        "height":2160,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "url":"/assets/portrait.png"
-      }]
-    }]'>
+    "id":"7884",
+    "landscape":[{
+      "id":"1193",
+      "width":3840,
+      "height":2160,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "url":"/assets/landscape.jpg"
+    }],
+    "portrait":[{
+      "id":"1193",
+      "width":2160,
+      "height":2160,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "url":"/assets/portrait.png"
+    }]
+  }]'>
 </responsive-craft-visual>
 
 ```vue
 <responsive-craft-visual
   :image='[{
-      "id":"7884",
-      "landscape":[{
-        "id":"1193",
-        "width":3840,
-        "height":2160,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "url":"/assets/landscape.jpg"
-      }],
-      "portrait":[{
-        "id":"1193",
-        "width":2160,
-        "height":2160,
-        "title":"Retreat",
-        "mimeType":"image/jpeg",
-        "focalPoint":[0.5,0.5],
-        "url":"/assets/portrait.png"
-      }]
-    }]'>
+    "id":"7884",
+    "landscape":[{
+      "id":"1193",
+      "width":3840,
+      "height":2160,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "url":"/assets/landscape.jpg"
+    }],
+    "portrait":[{
+      "id":"1193",
+      "width":2160,
+      "height":2160,
+      "title":"Retreat",
+      "mimeType":"image/jpeg",
+      "focalPoint":[0.5,0.5],
+      "url":"/assets/portrait.png"
+    }]
+  }]'>
 </responsive-craft-visual>
 ```
