@@ -104,8 +104,8 @@ export default
 		# blocks. Written kinda weird so it defaults to true when blockIndex is
 		# undefined. Also, disable lazyload automatically when preloading.
 		isCriticalImage = injections.blockIndex < 2
-		lazyload = props.lazyload ? not isCriticalImage
 		preload = props.preload ? isCriticalImage
+		lazyload = props.lazyload ? not isCriticalImage && not preload
 
 		# If transition is undefined and is a crticial image or lazy loading is
 		# disabled, then disable transition so the visual doesn't begin as display
