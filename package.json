@@ -16,7 +16,7 @@
 		"@cloak-app/utils": "^1.2.0",
 		"@nuxt/image": "0.6.0 || ^0.6.3",
 		"lodash": "^4.0.0",
-		"vue-visual": "https://github.com/BKWLD/vue-visual#support-preload"
+		"vue-visual": "^2.7.0"
 	},
 	"devDependencies": {
 		"@cloak-app/boilerplate": "^1.0.8",
