@@ -21,6 +21,7 @@ export default
 		portraitAspect: Number
 	}
 
+	# Add preload link tag
 	head: ->
 		return unless @isResponsiveImage and @preload
 		return link: [
