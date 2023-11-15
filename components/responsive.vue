@@ -5,6 +5,9 @@ import CloakVisual from './visual'
 export default
 	name: 'ResponsiveVisual'
 
+	# Get the index of the block this may be in
+	inject: blockIndex: default: undefined
+
 	props: {
 
 		# Merge cloak-visual props
@@ -23,7 +26,7 @@ export default
 
 	# Add preload link tag
 	head: ->
-		return unless @isResponsiveImage and @preload
+		return unless @isResponsiveImage and @shouldPreload
 		return link: [
 			{
 				rel: 'preload'
@@ -60,6 +63,11 @@ export default
 
 		# Check that both responsive props are populated
 		isResponsiveImage: -> !!(@landscapeImage and @portraitImage)
+
+		# Automatically preload if a critical image
+		shouldPreload: ->
+			isCriticalImage = @blockIndex < 2
+			return @preload ? isCriticalImage
 
 		# Make responsive style rules, if relavent
 		responsiveAspectStyles: ->
@@ -140,9 +148,16 @@ export default
 				image: @responsiveImage
 				video: @responsiveVideo
 
-				# Don't pass preload to visual instance if we are adding responsive
-				# preload
-				preload: if @isResponsiveImage then false else @$props.preload
+				# If responsive, preloading will be handled by this component, not
+				# the child cloak-visual
+				preload:
+					if @isResponsiveImage
+					then false else @$props.preload
+
+				# Automatically disable lazyloading if responsive preloading
+				lazyload:
+					if @isResponsiveImage and @shouldPreload
+					then false else @$props.lazyload
 
 				# Clear props that were unique to this component
 				landscapeImage: undefined
