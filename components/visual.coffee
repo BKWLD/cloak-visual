@@ -100,10 +100,12 @@ export default
 			(props.autoNoPlaceholder and props.image?.match /\.(png|svg)/i)
 		then parent.$config.cloak.visual.placeholderColor
 
-		# Disable lazy loading automatically if found in 2 blocks. Written
-		# kinda weird so it defaults to true when blockIndex is undefined
+		# Disable lazy loading and enable preload automatically if found in 2
+		# blocks. Written kinda weird so it defaults to true when blockIndex is
+		# undefined. Also, disable lazyload automatically when preloading.
 		isCriticalImage = injections.blockIndex < 2
 		lazyload = props.lazyload ? not isCriticalImage
+		preload = props.preload ? isCriticalImage
 
 		# If transition is undefined and is a crticial image or lazy loading is
 		# disabled, then disable transition so the visual doesn't begin as display
@@ -150,6 +152,7 @@ export default
 				aspect
 
 				# Loading
+				preload
 				lazyload
 				transition
 				placeholderColor
