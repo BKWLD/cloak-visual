@@ -39,7 +39,7 @@ export default
 		}
 
 # Craft returns assets in an array, so get the first asset in the list
-getAssetObject = (asset) ->
+export getAssetObject = (asset) ->
 	if Array.isArray asset
 	then asset[0]
 	else asset
