@@ -40,6 +40,9 @@ export default
 
 		# Set base booleans to an undefined default so we can test whether they
 		# were explicitly made false or are actually undefined
+		preload:
+			type: Boolean
+			default: undefined
 		lazyload:
 			type: Boolean
 			default: undefined
