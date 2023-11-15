@@ -57,6 +57,7 @@ export default
 
 	computed:
 
+		# Check that both responsive props are populated
 		isResponsiveImage: -> !!(@landscapeImage and @portraitImage)
 
 		# Make responsive style rules, if relavent
@@ -81,13 +82,13 @@ export default
 
 		# Make the image prop
 		responsiveImage: ->
-			if @landscapeImage and @portraitImage
+			if @isResponsiveImage
 			then @landscapeImage # Visual requires an image value
 			else @landscapeImage || @portraitImage || @image
 
 		# Make responsive sources
 		responsiveSources: ->
-			return unless @landscapeImage and @portraitImage
+			return unless @isResponsiveImage
 			[
 				{
 					attrs:
