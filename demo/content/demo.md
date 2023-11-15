@@ -8,7 +8,7 @@ Renders a `vue-visual` instance using Cloak defaults.  When deployed to Netlify,
   preload
   image='/assets/landscape.jpg'
   alt='Cyberpunk vibes demo image'
-  sizes='(max-width: 1062px) 1062px; 100vw'>
+  sizes='(max-width: 1062px) 100vw; 1062px'>
 </cloak-visual>
 
 ```vue
@@ -16,7 +16,7 @@ Renders a `vue-visual` instance using Cloak defaults.  When deployed to Netlify,
   preload
   image='/assets/landscape.jpg'
   alt='Cyberpunk vibes demo image'
-  sizes='(max-width: 1062px) 1062px; 100vw'>
+  sizes='(max-width: 1062px) 100vw; 1062px'>
 </cloak-visual>
 ```
 
