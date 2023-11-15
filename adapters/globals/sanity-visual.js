@@ -1,4 +1,4 @@
-import CloakVisual from '@cloak-app/visual/components/visual'
+import CloakVisual from '../../components/visual'
 export default {
   functional: true,
 
@@ -23,6 +23,9 @@ export default {
       ...data,
       props: {
         ...props,
+
+        // The provider should default Sanity
+        provider: props.provider || 'sanity',
 
         // Pass along props that were extrapolated from Sanity objects
         image: getAssetRef(props.image),
