@@ -22,24 +22,24 @@ export default
 	}
 
 	head: ->
-		return {} unless @isResponsiveImage and @preload
+		return unless @isResponsiveImage and @preload
 
 		return link: [
 			{
 				rel: 'preload'
 				as: 'image'
-				imagesrcset: @makeSrcset @landscapeImage
 				href: @landscapeImage
-				imagesizes: @sizes
-				media: "(orientation: landscape)"
+				imagesrcset: @makeSrcset @landscapeImage
+				imagesizes: @sizes || ''
+				media: '(orientation: landscape)'
 			}
 			{
 				rel: 'preload'
 				as: 'image'
-				imagesrcset: @makeSrcset @portraitImage
 				href: @portraitImage
-				imagesizes: @sizes
-				media: "(orientation: portrait)"
+				imagesrcset: @makeSrcset @portraitImage
+				imagesizes: @sizes || ''
+				media: '(orientation: portrait)'
 			}
 		]
 
