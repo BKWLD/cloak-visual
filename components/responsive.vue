@@ -101,7 +101,8 @@ export default
 		# Make responsive sources
 		responsiveSources: ->
 			return unless @isResponsiveImage
-			return @customResponsiveSources if @customResponsiveSources
+			if @customResponsiveSources
+			then return @addSrcsetToCustomSources @customResponsiveSources 
 			[
 				{
 					attrs:
@@ -129,6 +130,12 @@ export default
 		makeSrcset: (source) ->
 			{ provider, preset } = @$props
 			@$cloakSrcset source, {}, { provider, preset }
+
+		# Add srcset to customResponsiveSources
+		addSrcsetToCustomSources: (sources) ->
+			sources[0]?.attrs?.srcset = @makeSrcset @landscapeImage
+			sources[1]?.attrs?.srcset = @makeSrcset @portraitImage
+			return sources
 
 	# Create a single Clocak Visual instance
 	render: (create) ->
