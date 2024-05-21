@@ -22,6 +22,9 @@ export default
 		portraitImage: String
 		portraitVideo: String
 		portraitAspect: Number
+
+		# Support customizing response sources configuration
+		customResponsiveSources: Array
 	}
 
 	# Add preload link tag
@@ -98,6 +101,7 @@ export default
 		# Make responsive sources
 		responsiveSources: ->
 			return unless @isResponsiveImage
+			return @customResponsiveSources if @customResponsiveSources
 			[
 				{
 					attrs:
