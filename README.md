@@ -36,7 +36,7 @@ At the moment, there is **no support for Craft image transforms**. I'm not entir
 Set these properties within `cloak: { visual: { ... } }` in the nuxt.config.js:
 
 - `placeholderColor` - Sets the [`vue-visual` `placeholder-color`](https://github.com/BKWLD/vue-visual#loading). Defaults to `rgba(0,0,0,.2)`.
-- `srcsetWidths` - An array of viewport widths that will be used to make `srcset` values from.  Defaults to `[1920, 1440, 1024, 768, 425, 210]`.
+- `srcsetSizes` - An array of viewport widths that will be used to make `srcset` values from.  Defaults to `[1920, 1440, 1024, 768, 425, 210]`.
 - `blockMaxWidth` - A string that should match a global CSS class that adds horizontal `padding` and a `max-width` to the block component.  Defaults to `max-w`.
 
 ## Usage
