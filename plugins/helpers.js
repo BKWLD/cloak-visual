@@ -78,6 +78,8 @@ export function srcset(url, sizes, modifiers, options, {
 	$cloakImg, maxWidth
 } = {}) {
 	if (!url || !sizes) return
+	// Don't support srcset for GIF
+	if (url.toLowerCase().endsWith('.gif')) return
 
 	// Don't output src options that are greater then a 2X version of the max
 	// width
