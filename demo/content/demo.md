@@ -40,6 +40,26 @@ This uses an explicit `imgix` provider to produce a `srcset` using `@cloak-app/v
 </cloak-visual>
 ```
 
+Gifs are ignored, though:
+
+<cloak-visual
+  image='/assets/example.gif'
+  provider='imgix'
+  sizes='100vw'
+  alt='ASCII Gif'
+  width='100%'>
+</cloak-visual>
+
+```vue
+<cloak-visual
+  image='/assets/example.gif'
+  provider='imgix'
+  sizes='100vw'
+  alt='ASCII Gif'
+  width='100%'>
+</cloak-visual>
+```
+
 ## Responsive component
 
 Conditionally render landscape or portrait visual instances using `imgix` to produce srcset crops.
