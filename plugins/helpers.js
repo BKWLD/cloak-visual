@@ -35,6 +35,9 @@ export function img(url, modifiers, options = {}, {
 	// If no URL passed, abort
 	if (!url) return
 
+	// Passthrough gifs without trying to format/compress them
+	if (url.toLowerCase().endsWith(".gif")) return url;
+
 	// If domains were provided, try and get just the image path
 	if (domains) url = imgPath(domains, url)
 
@@ -78,7 +81,8 @@ export function srcset(url, sizes, modifiers, options, {
 	$cloakImg, maxWidth
 } = {}) {
 	if (!url || !sizes) return
-	// Don't support srcset for GIF
+
+	// Don't generate srcset for GIF
 	if (url.toLowerCase().endsWith('.gif')) return
 
 	// Don't output src options that are greater then a 2X version of the max
